@@ -1,0 +1,53 @@
+type Query {
+    users(query: String, first: Int, skip: Int, after: Int, orderBy: String): [User!]!
+    me: User!
+}
+
+type Mutation {
+    login(data: LoginUserInput!): AuthPayload!
+    deleteUser: User!
+    createUser(data: CreateUserInput!): AuthPayload!
+    updateUser(data: UpdateUserInput): User!
+}
+
+# Uncomment this later when adding subscriptions
+# Also uncomment in src/resolvers/index.js
+# type Subscription { 
+# }
+
+input LoginUserInput {
+    email: String!
+    password: String!
+}
+
+input CreateUserInput {
+    name: String!
+    email: String!
+    password: String!
+}
+
+input UpdateUserInput {
+    name: String!
+    email: String!
+}
+  
+type User {
+    id: ID!
+    name: String!
+    email: String
+    password: String!
+    updatedAt: String!
+    createdAt: String!
+}
+ 
+enum MutationType {
+    CREATED
+    UPDATED
+    DELETED
+}
+
+
+type AuthPayload {
+    token: String!
+    user: User!
+}
