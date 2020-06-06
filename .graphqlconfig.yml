@@ -1,0 +1,11 @@
+projects:
+  prisma:
+    schemaPath: src/generated/prisma.graphql
+    extensions:
+      endpoints:
+        default: 'http://127.0.0.1:4466'
+  test:
+    schemaPath: src/generated/schema.graphql
+    extensions:
+      endpoints:
+        prismagraphql-docker: 'http://127.0.0.1:4466'
