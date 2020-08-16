@@ -3,13 +3,14 @@ services:
   prisma:
     image: prismagraphql/prisma:1.34.10
     restart: always
+    depends_on: 
+    - postgres
     ports:
     - "4466:4466"
     environment:
       PRISMA_CONFIG: |
         port: 4466
-        # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
-        #managementApiSecret: 2d6727a03bca277cf
+        managementApiSecret: ${PRISMA_MANAGEMENT_API_SECRET}
         databases:
           default:
             connector: postgres
